@@ -1,6 +1,7 @@
 {
     "name": "m-arfian/yii2arfian",
     "description": "Simple helper for yii2",
+    "minimum-stability": "dev-master",
     "require": {
         "php": "^5.3.3 || ^7.0"
     }

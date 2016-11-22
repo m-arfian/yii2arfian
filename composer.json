@@ -1,0 +1,7 @@
+{
+    "name": "Arfian/yii2arfian",
+    "description": "Simple helper for yii2",
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+    }
+}

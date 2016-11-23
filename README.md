@@ -5,7 +5,7 @@ composer require m-arfian/yii2arfian
 ### What is this repository for? ###
 
 * Made some simple add-ons to shortens line of code for yii2. It works for me and my code behavior.
-* 0.0.5
+* 1.0.1
 
 ### How do I get set up? ###
 

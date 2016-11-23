@@ -2,8 +2,9 @@
     "name": "m-arfian/yii2arfian",
     "description": "Simple extension for yii2",
     "type": "yii2-extension",
-    "minimum-stability": "dev-master",
+    "minimum-stability": "dev",
+    "license": "proprietary",
     "require": {
-        "php": "^5.0.0 || ^7.0"
+        "yiisoft/yii2": "~2.0.0"
     }
 }

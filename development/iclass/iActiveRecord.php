@@ -53,16 +53,26 @@ class iActiveRecord extends ActiveRecord implements Listable, Statusable {
     }
 
     public static function listAll($text = 'name', $key = 'id') {
+        // return self::listMaker(self::find()->orderBy('name')->all(), $text, $key);
         return ArrayHelper::map(self::find()->orderBy('name')->all(), $key, $text);
     }
 
     public static function listAllByAttributes($condition, $text = 'name', $key = 'id') {
-        return ArrayHelper::map(self::find()->where($condition)->orderBy('name'), $key, $text);
+        return ArrayHelper::map(self::find()->where($condition)->orderBy('name')->all(), $key, $text);
     }
     
     public static function listAllActive() {
         return ArrayHelper::map(self::getActiveData()->orderBy('name')->all(), 'id', 'name');
     }
+    
+    /* private static function listMaker($dataObjects, $text, $key) {
+        $list = [];
+        foreach ($dataObjects as $row) {
+            $list[$row->{$key}] = $row->{$text};
+        }
+        
+        return $list;
+    } */
     
     public static function statusText($value) {
         switch ($value) {

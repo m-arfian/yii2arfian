@@ -14,6 +14,7 @@ namespace yii2arfian\iclass;
  * @author ARFIAN
  */
 
+use Yii;
 use yii\web\Controller;
 use yii2arfian\interfaces\StatusActionInterface;
 use yii2arfian\interfaces\Statusable;

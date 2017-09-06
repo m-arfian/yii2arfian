@@ -35,21 +35,21 @@ class iActiveRecord extends ActiveRecord implements Listable, Statusable {
      * @return \yii\db\ActiveQuery;
      */
     public static function getActiveData() {
-        return self::find()->where('status = :status', [':status' => self::STATUS_ACTIVE]);
+        return self::find()->where(parent::tableName() . '.status = :status', [':status' => self::STATUS_ACTIVE]);
     }
 
     /**
      * @return \yii\db\ActiveQuery;
      */
     public static function getNonactiveData() {
-        return self::find()->where('status = :status', [':status' => self::STATUS_NONACTIVE]);
+        return self::find()->where(parent::tableName() . '.status = :status', [':status' => self::STATUS_NONACTIVE]);
     }
 
     /**
      * @return \yii\db\ActiveQuery;
      */
     public static function getDeletedData() {
-        return self::find()->where('status = :status', [':status' => self::STATUS_DELETED]);
+        return self::find()->where(parent::tableName() . '.status = :status', [':status' => self::STATUS_DELETED]);
     }
 
     public static function listAll($text = 'name', $key = 'id') {

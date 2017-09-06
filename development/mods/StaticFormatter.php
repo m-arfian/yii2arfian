@@ -29,4 +29,9 @@ class StaticFormatter {
         return $format->asEasyNumber($value);
     }
     
+    public static function asEasyDate($value) {        
+        $format = new iFormatter;
+        return $format->asEasyDate($value);
+    }
+    
 }

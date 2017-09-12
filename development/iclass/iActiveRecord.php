@@ -52,17 +52,17 @@ class iActiveRecord extends ActiveRecord implements Listable, Statusable {
         return self::find()->where(parent::tableName() . '.status = :status', [':status' => self::STATUS_DELETED]);
     }
 
-    public static function listAll($text = 'name', $key = 'id') {
+    public static function listAll($text = 'name', $key = 'id', $orderBy = 'name') {
         // return self::listMaker(self::find()->orderBy('name')->all(), $text, $key);
-        return ArrayHelper::map(self::find()->orderBy('name')->all(), $key, $text);
+        return ArrayHelper::map(self::find()->orderBy($orderBy)->all(), $key, $text);
     }
 
-    public static function listAllByAttributes($condition, $text = 'name', $key = 'id') {
-        return ArrayHelper::map(self::find()->where($condition)->orderBy('name')->all(), $key, $text);
+    public static function listAllByAttributes($condition, $text = 'name', $key = 'id', $orderBy = 'name') {
+        return ArrayHelper::map(self::find()->where($condition)->orderBy($orderBy)->all(), $key, $text);
     }
     
-    public static function listAllActive() {
-        return ArrayHelper::map(self::getActiveData()->orderBy('name')->all(), 'id', 'name');
+    public static function listAllActive($orderBy = 'name') {
+        return ArrayHelper::map(self::getActiveData()->orderBy($orderBy)->all(), 'id', 'name');
     }
     
     /* private static function listMaker($dataObjects, $text, $key) {

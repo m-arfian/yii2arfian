@@ -30,6 +30,14 @@ class iFormatter extends Formatter{
         return null;
     }
     
+    public function asEasyTimestapDate($value) {        
+        if($value != null) {
+            return date('d-m-Y', $value);
+        }
+        
+        return null;
+    }
+    
     public function asI18nNumber($value) {
         return str_replace(\Yii::$app->formatter->thousandSeparator, '', $value);
     }

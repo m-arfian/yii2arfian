@@ -21,7 +21,7 @@ class CdnHelper {
     public static function getUrl($path, $isAbsolute = true) {
         $param = \Yii::$app->params['s3cdn'];
         
-        $cdnHosted = !empty($param);
+        $cdnHosted = $param['enabled'];
         $cdnPath = "http://{$param['bucket']}{$param['host']}" . Url::to($path);
             
         if ($cdnHosted && file_exists($cdnPath)) {

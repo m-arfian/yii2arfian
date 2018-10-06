@@ -18,10 +18,14 @@ use yii\helpers\Url;
 
 class CdnHelper {
     
-    public static function getUrl($path, $isAbsolute = false, $cdnHosted = true) {
-        if ($cdnHosted) {
-            $param = \Yii::$app->params['s3cdn'];
-            return "http://{$param['bucket']}{$param['host']}" . Url::to($path);
+    public static function getUrl($path, $isAbsolute = true) {
+        $param = \Yii::$app->params['s3cdn'];
+        
+        $cdnHosted = !empty($param);
+        $cdnPath = "http://{$param['bucket']}{$param['host']}" . Url::to($path);
+            
+        if ($cdnHosted && file_exists($cdnPath)) {
+            return $cdnPath;
         } else {
             return Url::to($path, $isAbsolute);
         }

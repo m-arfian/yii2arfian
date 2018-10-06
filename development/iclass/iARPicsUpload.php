@@ -132,7 +132,7 @@ class iARPicsUpload extends iActiveRecord {
             } while (file_exists($absoPath));
 
             $absoDir = Yii::$app->basePath . "/web{$this->saveAsTo}";
-
+//            die($absoDir);
             if (!file_exists($absoDir)) {
                 if (!mkdir($absoDir, 0755)) {
                     throw new \yii\db\Exception('Upload direktori gagal.');

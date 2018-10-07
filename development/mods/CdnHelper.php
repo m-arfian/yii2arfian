@@ -22,7 +22,7 @@ class CdnHelper {
         $param = \Yii::$app->params['s3cdn'];
         
         $cdnHosted = $param['enabled'];
-        $cdnPath = "http://{$param['bucket']}{$param['host']}" . Url::to($path);
+        $cdnPath = self::base() . Url::to($path);
             
         if ($cdnHosted && file_exists($cdnPath)) {
             return $cdnPath;
@@ -31,7 +31,7 @@ class CdnHelper {
         }
     }
     
-    public static function base() {
+    private static function base() {
         $param = \Yii::$app->params['s3cdn'];
         return "http://{$param['bucket']}{$param['host']}";
     }

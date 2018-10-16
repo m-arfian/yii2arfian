@@ -18,7 +18,7 @@ use yii\helpers\Url;
 
 class CdnHelper {
     
-    public static function getUrl($path, $isAbsolute = true) {
+    public static function getUrl($path, $isAbsolute = false) {
         $param = \Yii::$app->params['s3cdn'];
         
         $cdnHosted = $param['enabled'];
@@ -27,7 +27,7 @@ class CdnHelper {
         if ($cdnHosted && file_exists($cdnPath)) {
             return $cdnPath;
         } else {
-            return Url::to($path, $isAbsolute);
+            return Url::to(Url::base() . $path, $isAbsolute);
         }
     }
     

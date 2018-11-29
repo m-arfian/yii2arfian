@@ -123,6 +123,7 @@ class iARPicsUpload extends iActiveRecord {
 
     protected function uploadResizedImage($location = null, $param = []) {
         $fileName = explode('.', $this->tempAttribute->name);
+        $s3Property = Yii::$app->params['s3cdn'];
 
         foreach ($this->imageAttribute as $name => $attr) {
             do {
@@ -132,7 +133,7 @@ class iARPicsUpload extends iActiveRecord {
             } while (file_exists($absoPath));
 
             $absoDir = Yii::$app->basePath . "/web{$this->saveAsTo}";
-//            die($absoDir);
+//            die($absoPath . "<br/>" . $s3Property['bucket'] . "<br/>" . $path);
             if (!file_exists($absoDir)) {
                 if (!mkdir($absoDir, 0755)) {
                     throw new \yii\db\Exception('Upload direktori gagal.');
@@ -147,8 +148,10 @@ class iARPicsUpload extends iActiveRecord {
             switch ($location) {
                 case 'S3':
                     require_once ($this->s3SupportFile);
+                    
+                    $uri = $s3Property['folder'] . $path;
                     $s3Cdn = new \S3(Yii::$app->params['s3cdn']['access-key'], Yii::$app->params['s3cdn']['secret-key']);
-                    if (!$s3Cdn->putObjectFile($absoPath, Yii::$app->params['s3cdn']['bucket'], ltrim($path, '/'), $param['acl'])) {
+                    if (!$s3Cdn->putObjectFile($absoPath, $s3Property['bucket'], ltrim($uri, '/'), $param['acl'])) {
                         throw new \PDOException("Gambar tidak bisa diupload ke S3: $path");
                     }
                     break;

@@ -30,6 +30,15 @@ class iFormatter extends Formatter{
         return null;
     }
     
+    public function asEasyDateTime($value) {
+        if($value != null) {
+            setlocale(LC_TIME, 'id-ID');
+            return strftime("%d-%m-%Y <small>%H:%M:%S</small>", strtotime($value));
+        }
+        
+        return null;
+    }
+    
     public function asEasyTimestapDate($value) {        
         if($value != null) {
             return date('d-m-Y', $value);
